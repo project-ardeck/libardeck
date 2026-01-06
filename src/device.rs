@@ -100,19 +100,30 @@ pub type ArdeckConnectionHandler = Box<dyn Fn(ArdeckConnectionHandlerType) + Sen
 /// Ardeckとの通信を制御したり、データを処理したりする
 struct ArdeckConnection {
     device_id: String,
-    serialport: Box<dyn SerialPort>,
+    /// シリアルポートの接続
+    serialport: Option<Box<dyn SerialPort>>,
     handler: Option<ArdeckConnectionHandler>,
 }
 
+// DRAFT:
+// - コネクションインスタンスが生成されると接続先を記録したインスタンスが生成される
+// - インスタンスが存在する間はシリアルポートが切断されても再接続を試みる
+// - 初回接続時に未接続ならばリトライ・アクセス拒否ならば初期化失敗としてインスタンスを生成しない
 impl ArdeckConnection {
+    /// 接続
     pub fn new(
         port_name: String,
         baud_rate: u32,
         device_id: String,
         handler: Option<ArdeckConnectionHandler>,
     ) -> Self {
-        serialport::new(port_name, baud_rate).open();
-
-        ArdeckConnection { device_id, handler }
+        match serialport::new(port_name, baud_rate).open() {
+            Ok(p) => ArdeckConnection {
+                device_id,
+                handler,
+                serialport: Some(p),
+            },
+            Err(e) => device,
+        };
     }
 }

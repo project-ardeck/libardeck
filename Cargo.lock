@@ -12,6 +12,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "ardeck"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "log",
+ "proc-macro2",
+ "quote",
+ "serde",
+ "serde_json",
+ "serialport",
+ "syn",
+ "tokio",
+]
+
+[[package]]
 name = "autocfg"
 version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -140,21 +155,6 @@ checksum = "464a3709c7f55f1f721e5389aa6ea4e3bc6aba669353300af094b29ffbdde1d8"
 dependencies = [
  "once_cell",
  "wasm-bindgen",
-]
-
-[[package]]
-name = "libardeck"
-version = "0.1.0"
-dependencies = [
- "chrono",
- "log",
- "proc-macro2",
- "quote",
- "serde",
- "serde_json",
- "serialport",
- "syn",
- "tokio",
 ]
 
 [[package]]
