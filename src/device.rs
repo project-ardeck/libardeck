@@ -1,3 +1,4 @@
+pub mod dec;
 pub mod switch;
 
 use std::fmt;
@@ -113,26 +114,26 @@ struct Connection {
 // - コネクションインスタンスが生成されると接続先を記録したインスタンスが生成される
 // - インスタンスが存在する間はシリアルポートが切断されても再接続を試みる
 // - 初回接続時に未接続ならばリトライ・アクセス拒否ならば初期化失敗としてインスタンスを生成しない
-impl Connection {
-    /// 接続
-    pub fn new(
-        port_name: String,
-        baud_rate: u32,
-        device_id: String,
-        handler: Option<ArdeckConnectionHandler>,
-    ) -> Self {
-        match serialport::new(port_name, baud_rate).open() {
-            Ok(p) => Self {
-                device_id,
-                handler,
-                serialport: Some(p),
-            },
-            Err(e) => device,
-        };
-    }
-}
+// impl Connection {
+//     /// 接続
+//     pub fn new(
+//         port_name: String,
+//         baud_rate: u32,
+//         device_id: String,
+//         handler: Option<ArdeckConnectionHandler>,
+//     ) -> Self {
+//         match serialport::new(port_name, baud_rate).open() {
+//             Ok(p) => Self {
+//                 device_id,
+//                 handler,
+//                 serialport: Some(p),
+//             },
+//             Err(e) => device,
+//         };
+//     }
+// }
 
-struct ConnectionBuilder {
-    port_name: String,
-    baud_rate: u32,
-}
+// struct ConnectionBuilder {
+//     port_name: String,
+//     baud_rate: u32,
+// }
