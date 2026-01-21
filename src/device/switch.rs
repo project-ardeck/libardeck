@@ -10,16 +10,22 @@ pub enum SwitchKind {
     Analog = 1,
 }
 
+impl Default for SwitchKind {
+    fn default() -> Self {
+        SwitchKind::Digital
+    }
+}
+
 /// デバイスによって押されたスイッチの情報を保持する構造体
-#[derive(Clone, Deserialize, Serialize, Debug)]
+#[derive(Clone, Deserialize, Serialize, Debug, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct SwitchInfo {
     /// スイッチの種類
-    kind: SwitchKind,
+    pub kind: SwitchKind,
     /// スイッチが接続されているArduino上のピン番号
-    pin: u8,
+    pub pin: u8,
     /// スイッチの状態を表す数値
-    state: u16,
+    pub state: u16,
     /// データが取得された時刻(正確には)
-    timestamp: i64,
+    pub timestamp: i64,
 }
