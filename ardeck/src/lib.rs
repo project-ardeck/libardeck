@@ -1,14 +1,8 @@
 #[cfg(any(test, feature = "device"))]
 pub mod device;
 
-// #[cfg(test)]
-// mod tests {
-//     // use crate::device::AvailableDeviceInfoList;
+#[cfg(any(test, feature = "config"))]
+pub mod config;
 
-//     use super::*;
-
-//     #[test]
-//     fn it_works() {
-//         // let device = super::device::available_list().arduino_only();
-//     }
-// }
+#[cfg(any(test, feature = "store"))]
+pub mod store;

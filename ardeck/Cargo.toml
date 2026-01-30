@@ -17,5 +17,7 @@ serialport = "4.8.1"
 
 
 [features]
-all = ["device"]
+all = ["device", "config", "store"]
 device = []
+config = []
+store = []
