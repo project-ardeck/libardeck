@@ -1,4 +1,5 @@
 use std::{
+    fs::create_dir_all,
     io::{Read, Write},
     path::PathBuf,
     sync::OnceLock,
@@ -36,8 +37,8 @@ impl StoreBuilder {
     }
 
     pub fn init(self) {
+        create_dir_all(&self.path).expect("Failed create directry when store initialize.");
         STORE_PATH.set(self.path).unwrap();
-        // TODO: ディレクトリを作成する
     }
 }
 
